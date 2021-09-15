@@ -49,7 +49,8 @@ var draggedPiece = -1;
   pieces[16].src = 'resources/sword_b.png';
   pieces[17].src = 'resources/troll.png';
 
-  pieces[12].onload = function(){drawBackground(); renderStills();}
+pieces[12].onload = function(){drawBackground(); renderStills();}
+pieces[17].onload = function(){drawBackground(); renderStills();}
 
 var robotWidth = [90+7,79+7,69+7,59+7,49+7,39+7,29+7];
 var robotHeight = 40;
@@ -62,11 +63,18 @@ function drawBackground(){
 var givenRotation = boardRotation;
 
   var sqrDistFromCenter = 350+robotHeight;
-ctx.beginPath();
-ctx.rect(250,250,300,300);
-ctx.fillStyle = "#4e5f6e";
-ctx.fill();
-ctx.closePath();
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.beginPath();
+    ctx.rect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle = "#ffffff";
+    ctx.fill();
+    ctx.closePath();
+
+    ctx.beginPath();
+    ctx.rect(250,250,300,300);
+    ctx.fillStyle = "#4e5f6e";
+    ctx.fill();
+    ctx.closePath();
 
 ctx2.beginPath();
 ctx2.rect(0,0,96,768);
@@ -85,7 +93,7 @@ for(var sqrOn = 0; sqrOn<=23;sqrOn++){
     var sqrID = (((sqrOnY*24))+sqrOn);
     sqrCentersX[sqrID] = Math.floor(givenCenterX);
     sqrCentersY[sqrID] = Math.floor(givenCenterY);
-    //ctx.clearRect(0, 0, canvas.width, canvas.height);
+
     var xVals = []
     var yVals = []
 
