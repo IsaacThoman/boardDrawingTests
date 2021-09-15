@@ -5,12 +5,59 @@ const canvas = document.getElementById("myCanvas");
 
   var boardResolution = canvas.width;
 
+  var boardSquares = [];
+  for(i = 0; i<=143;i++){
+    boardSquares.push(0);
+  }
+  boardSquares[0] = 4;  boardSquares[7] = 4;
+  boardSquares[8] = 10;  boardSquares[15] = 10;
+
+  boardSquares[1] = 3;  boardSquares[6] = 3;
+  boardSquares[9] = 9;  boardSquares[14] = 9;
+
+  boardSquares[2] = 2;  boardSquares[5] = 2;
+  boardSquares[10] = 8;  boardSquares[13] = 8;
+
+  boardSquares[3] = 6; boardSquares[4] = 5;
+  boardSquares[11] = 12; boardSquares[12] = 11;
+
+  for(pwnPsh = 24; pwnPsh<=24+7;pwnPsh++){
+    boardSquares[pwnPsh] = 1;
+    boardSquares[pwnPsh+8]=7;
+
+    boardSquares[pwnPsh-24+16] = 17;
+    boardSquares[pwnPsh+16] = 17;
+
+  }
+
+  var pieces = new Array();
+  pieces[0] = new Image();
+  for (let i = 1; i <= 12; i++) {
+      pieces[i] = new Image();
+  pieces[i].src = 'resources/'+i+'.png';
+  }
+  pieces[13] = new Image();
+  pieces[14] = new Image();
+  pieces[15] = new Image();
+  pieces[16] = new Image();
+  pieces[17] = new Image();
+
+  pieces[0].src = 'resources/troll.png';
+  pieces[13].src = 'resources/legalMoveDot.png';
+  pieces[14].src = 'resources/redDot.png';
+  pieces[15].src = 'resources/sword.png';
+  pieces[16].src = 'resources/sword_b.png';
+  pieces[17].src = 'resources/troll.png';
+
+  pieces[12].onload = function(){drawBackground(); renderStills();}
+
 var robotWidth = [90+7,79+7,69+7,59+7,49+7,39+7,29+7];
 var robotHeight = 40;
-var givenRotation = 20;
+var givenRotation = 70;
 var sqrDistFromCenter = 350+robotHeight;
 var sqrCentersX = [];
 var sqrCentersY = [];
+function drawBackground(){
 ctx.beginPath();
 ctx.rect(250,250,300,300);
 ctx.fillStyle = "#4e5f6e";
@@ -22,6 +69,7 @@ ctx2.rect(0,0,96,768);
 ctx2.fillStyle = "#9fb7c6";
 ctx2.fill();
 ctx2.closePath();
+
 
 
 for(var sqrOnY = 0; sqrOnY<=5;sqrOnY++){
@@ -60,13 +108,27 @@ for(var sqrOn = 0; sqrOn<=23;sqrOn++){
     ctx.lineTo(xVals[3], yVals[3]);
     ctx.closePath();
     ctx.fillStyle = "#d5E1E5";
-    if((sqrOn+sqrOnY) % 2 == 0){
+    if((sqrOn+sqrOnY) % 2 != 0){
         ctx.fillStyle = "#779AAF";
     }
     ctx.fill();
     ctx.fillStyle = "#000000";
 
-    ctx.fillText(sqrID,givenCenterX,givenCenterY);
+  //  ctx.fillText(sqrID,givenCenterX,givenCenterY);
 
 }}
+}
+
+function renderStills(){
+  for(var pieceOn = 0; pieceOn<sqrCentersX.length;pieceOn++){
+    var pieceSize = boardResolution/18;
+    if(boardSquares[pieceOn]>0){
+      ctx.drawImage(pieces[boardSquares[pieceOn]],sqrCentersX[pieceOn]-(pieceSize/2),sqrCentersY[pieceOn]-(pieceSize/2),pieceSize,pieceSize);
+    }
+
+}
+
+}
+
+
 //},32);
