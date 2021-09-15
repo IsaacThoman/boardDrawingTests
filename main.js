@@ -54,10 +54,10 @@ const canvas = document.getElementById("myCanvas");
 var robotWidth = [90+7,79+7,69+7,59+7,49+7,39+7,29+7];
 var robotHeight = 40;
 var givenRotation = 70;
-var sqrDistFromCenter = 350+robotHeight;
 var sqrCentersX = [];
 var sqrCentersY = [];
 function drawBackground(){
+  var sqrDistFromCenter = 350+robotHeight;
 ctx.beginPath();
 ctx.rect(250,250,300,300);
 ctx.fillStyle = "#4e5f6e";
@@ -130,5 +130,10 @@ function renderStills(){
 
 }
 
+animationTimer = window.setInterval(function(){
+ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
+drawBackground();
+renderStills();
+givenRotation+=1;
 
-//},32);
+},32);
