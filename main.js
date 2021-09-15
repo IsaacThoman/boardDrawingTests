@@ -1,19 +1,27 @@
 const canvas = document.getElementById("myCanvas");
   const ctx = canvas.getContext("2d");
+  const canvas2 = document.getElementById("myCanvas2");
+    const ctx2 = canvas2.getContext("2d");
 
   var boardResolution = canvas.width;
 
-var robotWidth = [90,79,69,59,49,39,29];
+var robotWidth = [90+7,79+7,69+7,59+7,49+7,39+7,29+7];
 var robotHeight = 40;
 var givenRotation = 20;
-var sqrDistFromCenter = 320+robotHeight;
+var sqrDistFromCenter = 350+robotHeight;
 var sqrCentersX = [];
 var sqrCentersY = [];
 ctx.beginPath();
-ctx.rect(270,270,300,300);
+ctx.rect(250,250,300,300);
 ctx.fillStyle = "#4e5f6e";
 ctx.fill();
 ctx.closePath();
+
+ctx2.beginPath();
+ctx2.rect(0,0,96,768);
+ctx2.fillStyle = "#9fb7c6";
+ctx2.fill();
+ctx2.closePath();
 
 
 for(var sqrOnY = 0; sqrOnY<=5;sqrOnY++){
@@ -23,8 +31,8 @@ for(var sqrOn = 0; sqrOn<=23;sqrOn++){
     var givenCenterX = (boardResolution / 2) + sqrDistFromCenter * Math.cos((givenRotation+90) * Math.PI / 180);
     var givenCenterY = (boardResolution / 2) + sqrDistFromCenter * Math.sin((givenRotation+90) * Math.PI / 180);
     var sqrID = (((sqrOnY*24))+sqrOn);
-    sqrCentersX[sqrID] = givenCenterX;
-    sqrCentersY[sqrID] = givenCenterY;
+    sqrCentersX[sqrID] = Math.floor(givenCenterX);
+    sqrCentersY[sqrID] = Math.floor(givenCenterY);
     //ctx.clearRect(0, 0, canvas.width, canvas.height);
     var xVals = []
     var yVals = []
