@@ -53,10 +53,14 @@ const canvas = document.getElementById("myCanvas");
 
 var robotWidth = [90+7,79+7,69+7,59+7,49+7,39+7,29+7];
 var robotHeight = 40;
-var givenRotation = 70;
+var boardRotation = 70;
 var sqrCentersX = [];
 var sqrCentersY = [];
+
+
 function drawBackground(){
+var givenRotation = boardRotation;
+
   var sqrDistFromCenter = 350+robotHeight;
 ctx.beginPath();
 ctx.rect(250,250,300,300);
@@ -134,6 +138,6 @@ animationTimer = window.setInterval(function(){
 ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
 drawBackground();
 renderStills();
-givenRotation+=1;
+boardRotation+=1;
 
 },32);
