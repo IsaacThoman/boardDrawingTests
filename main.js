@@ -2,7 +2,7 @@ const canvas = document.getElementById("myCanvas");
   const ctx = canvas.getContext("2d");
   const canvas2 = document.getElementById("myCanvas2");
     const ctx2 = canvas2.getContext("2d");
-
+var draggedPiece = -1;
   var boardResolution = canvas.width;
 
   var boardSquares = [];
@@ -122,22 +122,21 @@ for(var sqrOn = 0; sqrOn<=23;sqrOn++){
 
 }}
 }
-
+var pieceSize = boardResolution/18;
 function renderStills(){
   for(var pieceOn = 0; pieceOn<sqrCentersX.length;pieceOn++){
-    var pieceSize = boardResolution/18;
-    if(boardSquares[pieceOn]>0){
+
+    if(boardSquares[pieceOn]>0&&draggedPiece!=pieceOn){
       ctx.drawImage(pieces[boardSquares[pieceOn]],sqrCentersX[pieceOn]-(pieceSize/2),sqrCentersY[pieceOn]-(pieceSize/2),pieceSize,pieceSize);
     }
-
 }
 
 }
 
-animationTimer = window.setInterval(function(){
-ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
-drawBackground();
-renderStills();
-boardRotation+=1;
-
-},32);
+// animationTimer = window.setInterval(function(){
+// ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
+// drawBackground();
+// renderStills();
+// boardRotation+=1;
+//
+// },32);
