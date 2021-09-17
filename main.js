@@ -119,14 +119,24 @@ for(var sqrOn = 0; sqrOn<=23;sqrOn++){
     ctx.lineTo(xVals[2], yVals[2]);
     ctx.lineTo(xVals[3], yVals[3]);
     ctx.closePath();
+
     ctx.fillStyle = "#d5E1E5";
     if((sqrOn+sqrOnY) % 2 != 0){
         ctx.fillStyle = "#779AAF";
     }
+
+    if(legalMoves[sqrOn]){
+      ctx.fillStyle = "#e6e6d6";
+      if((sqrOn+sqrOnY) % 2 != 0){
+          ctx.fillStyle = "#b0b078";
+      }
+    }
+
+
     ctx.fill();
     ctx.fillStyle = "#000000";
 
-  //  ctx.fillText(sqrID,givenCenterX,givenCenterY);
+   ctx.fillText(sqrID,givenCenterX,givenCenterY);
 
 }}
 }

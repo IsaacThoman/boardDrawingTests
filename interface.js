@@ -69,6 +69,7 @@ function updateCursorIcon(){
 }
 
 function mouseDownHandler(e) {
+
     var rect = canvas.getBoundingClientRect();
     if('clientX' in e){
         relativeX = e.clientX - rect.left;
@@ -86,7 +87,7 @@ if(closestSquare!= -1){
         draggedPiece = closestSquare;
     }
 }
-
+  updateLegalMoves(draggedPiece);
 }
 
 function mouseUpHandler(e){
